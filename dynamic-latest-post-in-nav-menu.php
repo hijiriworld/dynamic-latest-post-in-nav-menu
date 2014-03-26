@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Dynamic Latest Post in Nav Menu
-Plugin URI: http://hijiriworld.com/web/
+Plugin URI: http://hijiriworld.com/web/plugins/dynamic-latest-post-in-nav-menu/
 Description: Add Custom Post Type's Dynamic Latest Post and Archive to Nav Menu.
 Author: hijiri
 Author URI: http://hijiriworld.com/web/
