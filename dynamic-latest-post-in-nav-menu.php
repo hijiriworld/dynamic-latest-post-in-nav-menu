@@ -5,23 +5,9 @@ Plugin URI: http://hijiriworld.com/web/plugins/dynamic-latest-post-in-nav-menu/
 Description: Add Custom Post Type's Dynamic Latest Post and Archive to Nav Menu.
 Author: hijiri
 Author URI: http://hijiriworld.com/web/
-Version: 1.0.0
-*/
-
-/*  Copyright 2014 hijiri
-
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License, version 2, as
-	published by the Free Software Foundation.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+Version: 1.1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if( !class_exists( 'Dlpinm' ) )
@@ -38,21 +24,36 @@ if( !class_exists( 'Dlpinm' ) )
 		
 		function dlpinm_filter( $items )
 		{
+			global $wpdb;
+			
 			foreach( $items as $key => $item ) {
 				
 				if ( $item->post_type == 'nav_menu_item' ) {
+					
+					// latest
 					if ( $item->object == 'latest' ) {
-						$recent_custom_post = get_posts( 'numberposts=1&post_type='.$item->type );
-						$latest_url = get_permalink( $recent_custom_post[0]->ID );
-						$item->url = $latest_url;
+						
+						$sql = "SELECT ID 
+							FROM $wpdb->posts 
+							WHERE $wpdb->posts.post_type = '$item->type' AND $wpdb->posts.post_status = 'publish' 
+							ORDER BY $wpdb->posts.menu_order, $wpdb->posts.post_date DESC 
+							LIMIT 1";
+						
+						$post_id = $wpdb->get_var( $sql );
+						$item->url = get_permalink( $post_id );
 						
 						// archive and all single
-						if ( /* get_permalink() == $latest_url ||  */get_query_var( 'post_type' ) == $item->type ) {
+						if ( get_query_var( 'post_type' ) == $item->type ) {
 							$item->classes[] = 'current-menu-item';
 							$item->current = true;
 						}
-					} else if ( $item->object == 'archive' ) {
-						$item->url = get_post_type_archive_link( $item->type );
+					}
+					
+					// archive
+					if ( $item->object == 'archive' ) {
+						
+						$item->url = $item->post_content;
+						//get_post_type_archive_link( $item->type );
 						
 						// archive and all single
 						if( get_query_var( 'post_type' ) == $item->type ) {
@@ -60,6 +61,7 @@ if( !class_exists( 'Dlpinm' ) )
 							$item->current = true;
 						}
 					}
+					
 				}
 			}
 			return $items;
@@ -75,7 +77,7 @@ if( !class_exists( 'Dlpinm' ) )
 			$post_types = get_post_types( array( 'show_in_nav_menus' => true, 'has_archive' => true ), 'object' );
 			
 			unset( $post_types['page']); // exclude Page object
-
+			
 			if( $post_types ) {
 				foreach ( $post_types as $post_type ) {
 					$post_type->classes = array();
@@ -105,7 +107,7 @@ if( !class_exists( 'Dlpinm' ) )
 				</div>
 				<p class="button-controls">
 					<span class="add-to-menu">
-						<!-- <img class="waiting" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="" /> -->
+						<!-- <img class="waiting" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt=""> -->
 						<input type="submit"<?php //disabled( $nav_menu_selected_id, 0 ); ?> class="button-secondary submit-add-to-menu" value="<?php esc_attr_e( 'Add to Menu' ); ?>" name="add-dlpinm-menu-item" id="submit-dlpinm-archive" />
 					</span>
 				</p>
@@ -157,10 +159,11 @@ if( !class_exists( 'Dlpinm' ) )
 		{
 			if ( isset( $item->object ) ) {
 				if ( $item->object == 'latest' ) {
-					$item->type_label = __( 'Latest', 'dlpinm');
+					$item->type_label = __( 'Latest', 'dlpinm' );
 	
 				} else if ( $item->object == 'archive' ) {
-					$item->type_label = __( 'Archive', 'dlpinm');
+					$item->type_label = __( 'Archive', 'dlpinm' );
+					$item->description = get_post_type_archive_link( $item->type );
 				}
 			}
 			return $item;
