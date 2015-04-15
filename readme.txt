@@ -12,11 +12,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Add Custom Post Type's Dynamic Latest Post and Archive to Nav Menu.
 
 'Latest' nav menu create the Link to Latest single post of Custom Post Type.
- - orderby 'menu_order', 'post_date'.
+ (orderby 'menu_order', 'post_date'.)
 
 When the new post is added, 'Latest' nav menu is updated dynamically.
 
 'Archive' nav menu create the Link to Archive page of Custom Post Type.
+
+<a href="https://github.com/hijiriworld/dynamic-latest-post-in-nav-menu">This Plugin published on GitHub.</a>
 
 == Installation ==
 
