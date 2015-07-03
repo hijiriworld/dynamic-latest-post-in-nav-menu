@@ -1,34 +1,33 @@
 # Dynamic Latest Post in Nav Menu
 
+<a href="http://hijiriworld.com/web/plugins/dynamic-latest-post-in-nav-menu/">Dynamic Latest Post in Nav Menu</a> is WordPress Plugin that add the link to dynamic latest post page, and the Archive page to Nav Menu.
+
 ## Description
 
-Add Custom Post Type's Dynamic Latest Post and Archive to Nav Menu.
+Add the link to dynamic latest post page, and the Archive page to Nav Menu.
 
-'Latest' nav menu create the Link to Latest single post of Custom Post Type.<br>
-orderby 'menu_order', 'post_date'
+**Latest**
 
-When the new post is added, 'Latest' nav menu is updated dynamically.
+The 'Latest' nav menu create the link to latest post page of Custom Post Type.<br>
+( orderby 'menu_order', 'post_date' )
 
-'Archive' nav menu create the Link to Archive page of Custom Post Type.
+When the new post is added, the link of 'Latest' is updated dynamically.
+
+**Archive**
+
+The 'Archive' nav menu create the link to the Archive page of Custom Post Type.
 
 ## Installation
 
-1. Upload 'dynamic-latest-post-in-nav-menu' folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Navigate to the WordPress Nav Menu
+1. Upload 'dynamic-latest-post-in-nav-menu' folder to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Navigate to the 'Menus' menu in WordPress.
 
-## Screenshots
+## Documentation
 
-1. Add 'Latest' menu tp nav menu.
-2. Add 'Archive' menu to nav menu.
+* <a href="http://hijiriworld.com/web/plugins/dynamic-latest-post-in-nav-menu/">Plugin URI</a>
+* <a href="https://wordpress.org/plugins/dynamic-latest-post-in-nav-menu/">WordPress Plugin Directory URI</a>
 
-## Changelog
+## License
 
-**1.1.0**
-
-* Support for Multisite( switch_to_blog ).
-* 'Latest' nav menu orderby 'menu_order', 'post_date'.
-
-**1.0.0**
-
-* Initial Release
+GPLv2 or later
