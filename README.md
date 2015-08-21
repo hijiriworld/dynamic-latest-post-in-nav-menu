@@ -9,7 +9,7 @@ Add the link to dynamic latest post page, and the Archive page to Nav Menu.
 **Latest**
 
 The 'Latest' nav menu create the link to latest post page of Custom Post Type.<br>
-( orderby 'menu_order', 'post_date' )
+(orderby 'menu_order', 'post_date')
 
 When the new post is added, the link of 'Latest' is updated dynamically.
 
