@@ -5,7 +5,7 @@ Plugin URI: http://hijiriworld.com/web/plugins/dynamic-latest-post-in-nav-menu/
 Description: Add Custom Post Type's Dynamic Latest Post and Archive to Nav Menu.
 Author: hijiri
 Author URI: http://hijiriworld.com/web/
-Version: 1.1.0
+Version: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -20,6 +20,7 @@ if( !class_exists( 'Dlpinm' ) )
 			add_action( 'admin_head-nav-menus.php', array( $this, 'dlpinm_metabox' ) );
 			add_filter( 'wp_setup_nav_menu_item', array( $this, 'dlpinm_setup_nav_menu_item' ) );
 			add_filter( 'wp_nav_menu_objects', array( $this, 'dlpinm_filter' ), 0 );
+			add_filter( 'wp_get_nav_menu_items', array( $this, 'dlpinm_filter' ) );
 		}
 		
 		function dlpinm_filter( $items )
@@ -40,6 +41,7 @@ if( !class_exists( 'Dlpinm' ) )
 							LIMIT 1";
 						
 						$post_id = $wpdb->get_var( $sql );
+						$item->object_id = $post_id;
 						$item->url = get_permalink( $post_id );
 						
 						// archive and all single

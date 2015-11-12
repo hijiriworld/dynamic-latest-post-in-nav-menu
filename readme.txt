@@ -2,8 +2,8 @@
 Contributors: hijiri
 Tags: nav menu
 Requires at least: 3.5.0
-Tested up to: 4.0.1
-Stable tag: 1.1.0
+Tested up to: 4.3.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,9 +37,14 @@ This Plugin published on <a href="https://github.com/hijiriworld/dynamic-latest-
 
 == Changelog ==
 
+= 1.1.1 =
+
+* Support 'wp_get_nav_menu_items'.
+* Add Japanese translation.
+
 = 1.1.0 =
 
-* Support for Multisite( switch_to_blog ).
+* Support for Multisite( 'switch_to_blog' ).
 * 'Latest' nav menu orderby 'menu_order', 'post_date'.
 
 = 1.0.0 =
